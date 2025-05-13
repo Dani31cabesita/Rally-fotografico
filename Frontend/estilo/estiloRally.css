@@ -1,0 +1,89 @@
+/* Contenedor principal del rally */
+.rally-container {
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    max-width: 1000px; /* Aumentamos el ancho máximo */
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+}
+
+/* Título del rally */
+.rally-title {
+    font-size: 2.2rem; /* Aumentamos el tamaño del título */
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Contenedor de imágenes */
+.rally-gallery {
+    display: flex;
+    flex-direction: column; /* Las imágenes estarán en filas */
+    gap: 2rem; /* Espaciado entre las filas */
+}
+
+/* Estilo de cada imagen y detalles */
+.rally-photo {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Tres columnas: izquierda, centro, derecha */
+    align-items: center; /* Centra verticalmente los elementos */
+    gap: 1rem;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background-color: #f9f9f9; /* Fondo claro */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Título y autor a la izquierda */
+.photo-details-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+.image-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.image-author {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Imagen centrada */
+.rally-photo img {
+    width: 400px; /* Aumentamos el ancho de la imagen */
+    height: 300px; /* Aumentamos la altura de la imagen */
+    object-fit: cover; /* Ajustamos la imagen sin deformarla */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 1px solid #ccc; /* Borde alrededor de la imagen */
+    justify-self: center; /* Centra la imagen en su columna */
+}
+
+/* Votos y enlace a la derecha */
+.photo-details-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: right;
+}
+
+.image-votes {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.vote-link {
+    font-size: 1.2rem;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}

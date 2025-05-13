@@ -1,0 +1,353 @@
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdf6e3; /* Fondo crema claro */
+    color: #5a5a5a; /* Gris oscuro */
+    line-height: 1.6;
+}
+
+/* Cabecera */
+header {
+    background-color: #f5e6ca; /* Crema más fuerte */
+    color: #3d3d3d; /* Gris oscuro */
+    text-align: center;
+    padding: 1.5rem 0;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+header .logout-button {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    background-color: #e4d3b0; /* Crema más intenso */
+    color: #3d3d3d;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+header .logout-button:hover {
+    background-color: #d2b890; /* Más oscuro al pasar el cursor */
+}
+
+/* Contenedores principales */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.container {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el cursor */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+}
+
+.container h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #3d3d3d; /* Gris oscuro */
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo semitransparente */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header .logout-button {
+        font-size: 0.9rem;
+    }
+}
+/* Contenedor de fotos */
+#fotos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Cada foto */
+.foto-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+/* Imagen de la foto */
+.foto-imagen {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Detalles de la foto */
+.foto-detalles p {
+    margin: 0.5rem 0;
+    color: #5a5a5a;
+}
+
+/* Botón eliminar */
+.eliminar-foto {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.eliminar-foto:hover {
+    background-color: #c0392b;
+}
+/* General */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdf6e3; /* Fondo crema claro */
+    color: #5a5a5a; /* Gris oscuro */
+    line-height: 1.6;
+}
+
+/* Cabecera */
+header {
+    background-color: #f5e6ca; /* Crema más fuerte */
+    color: #3d3d3d; /* Gris oscuro */
+    padding: 1rem 2rem; /* Ajustamos el padding para mayor consistencia */
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex; /* Usamos flexbox para alinear los elementos */
+    align-items: center; /* Alineamos verticalmente */
+    justify-content: space-between; /* Espaciamos los elementos */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1; /* Ocupa el espacio restante */
+}
+
+header .back-button {
+    background-color: #f5e6ca;
+    color: #3d3d3d;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-right: auto; /* Alinea el botón a la izquierda */
+}
+
+header .back-button:hover {
+    background-color: #e4d3b0; /* Crema más intenso */
+}
+
+/* Contenedor principal */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.container {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Ajustamos el ancho máximo */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el cursor */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+}
+
+.container h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #3d3d3d; /* Gris oscuro */
+}
+
+/* Contenedor de fotos */
+#fotos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center; /* Centra las fotos horizontalmente */
+    margin-top: 1rem;
+}
+
+/* Cada foto */
+.foto-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center; /* Centra el contenido de cada foto */
+}
+
+/* Imagen de la foto */
+.foto-imagen {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Detalles de la foto */
+.foto-detalles p {
+    margin: 0.5rem 0;
+    color: #5a5a5a;
+}
+
+/* Botón eliminar */
+.eliminar-foto {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.eliminar-foto:hover {
+    background-color: #c0392b;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .foto-item {
+        width: 100%; /* Las fotos ocuparán todo el ancho disponible */
+    }
+}
+/* Botón volver */
+.back-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #f5e6ca;
+    color: #3d3d3d;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #e4d3b0;
+}

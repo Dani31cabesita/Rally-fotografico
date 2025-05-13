@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Fotos</title>
+    <link rel="stylesheet" href="estilo/estiloParticipante.css"> <!-- Archivo CSS externo -->
+</head>
+<body>
+    <!-- Cabecera -->
+    <header>
+        <h1>Administrar Fotos</h1>
+        <a href="participante.html" class="back-button">Volver</a>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <div class="container" id="fotos-container">
+            <h2>Mis Fotos</h2>
+            <p>Cargando fotos...</p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const fotosContainer = document.getElementById('fotos-container');
+    
+            // Cargar las fotos del usuario
+            fetch('../Backend/obtener_fotos_usuario.php')
+                .then(response => response.json())
+                .then(fotos => {
+                    fotosContainer.innerHTML = '';
+                    if (fotos.length === 0) {
+                        fotosContainer.innerHTML = '<p>No tienes fotos subidas.</p>';
+                        return;
+                    }
+    
+                    fotos.forEach(foto => {
+                        const fotoDiv = document.createElement('div');
+                        fotoDiv.classList.add('foto-item');
+                        fotoDiv.setAttribute('data-id', foto.id_foto); // Añadimos un atributo para identificar la foto
+                        fotoDiv.innerHTML = `
+                            <img src="${foto.ruta_archivo}" alt="${foto.titulo}" class="foto-imagen">
+                            <div class="foto-detalles">
+                                <p><strong>Título:</strong> ${foto.titulo}</p>
+                                <p><strong>Estado:</strong> ${foto.estado}</p>
+                                <button class="eliminar-foto">Eliminar</button>
+                            </div>
+                        `;
+                        fotosContainer.appendChild(fotoDiv);
+                    });
+    
+                    // Añadir eventos para eliminar fotos
+                    fotosContainer.addEventListener('click', function (event) {
+                        if (event.target.classList.contains('eliminar-foto')) {
+                            const fotoDiv = event.target.closest('.foto-item');
+                            const idFoto = fotoDiv.getAttribute('data-id');
+    
+                            if (confirm('¿Estás seguro de que deseas eliminar esta foto?')) {
+                                fetch('../Backend/eliminar_foto.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    body: `id_foto=${idFoto}`
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            alert('Foto eliminada correctamente');
+                                            // Eliminar el contenedor de la foto del DOM
+                                            fotoDiv.remove();
+    
+                                            // Si no quedan fotos, mostrar un mensaje
+                                            if (!fotosContainer.querySelector('.foto-item')) {
+                                                fotosContainer.innerHTML = '<p>No tienes fotos subidas.</p>';
+                                            }
+                                        } else {
+                                            alert(data.error || 'Error al eliminar la foto');
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error al eliminar la foto:', error);
+                                        alert('Hubo un problema al intentar eliminar la foto.');
+                                    });
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al cargar las fotos:', error);
+                    fotosContainer.innerHTML = '<p>Error al cargar las fotos. Inténtalo de nuevo más tarde.</p>';
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Participante</title>
+    <link rel="stylesheet" href="estilo/estiloParticipante.css"> <!-- Archivo CSS externo -->
+    <link rel="stylesheet" href="estilo/estiloPrincipal.css">
+</head>
+<body>
+    <!-- Cabecera -->
+    <header>
+        <h1>Zona Privada</h1>
+        <a href="../Backend/logout.php" class="logout-button">Cerrar Sesión</a>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <div class="container" id="subir-imagen">
+            <h2>Subir Imagen</h2>
+        </div>
+        <div class="container">
+            <h2><a href="administrar_fotos.html">Administrar Fotos</a></h2>
+        </div>
+        <div class="container">
+            <h2>Ver Perfil</h2>
+        </div>
+    </main>
+
+    <!-- Modal para subir imagen -->
+    <div id="modal-subir-imagen" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Subir Imagen</h2>
+            <form method="POST" action="../Backend/subir_imagen.php" enctype="multipart/form-data">
+                <label for="titulo">Título de la Imagen:</label>
+                <input type="text" id="titulo" name="titulo" required>
+                
+                <label for="imagen">Seleccionar Imagen:</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                
+                <button type="submit">Subir Imagen</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../scripts/participante.js"></script> <!-- Archivo JavaScript externo -->
+</body>
+</html>

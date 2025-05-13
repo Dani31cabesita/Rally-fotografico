@@ -1,0 +1,19 @@
+Error 1: Creación automática de los Rallys
+Descripción del problema
+Me encontré con un problema al implementar la creación automática de los rallys. Cuando un rally alcanzaba el límite máximo de fotos permitidas (en mi caso, 3), este se marcaba como finalizado, lo cual era el comportamiento esperado. Sin embargo, no se creaba automáticamente un nuevo rally, y además, el campo fecha_fin en la tabla rally no tenía un valor predeterminado y no permitía valores nulos (NOT NULL). Esto provocaba un fallo al intentar actualizar el estado del rally a finalizado.
+
+Causa del error
+El error se debía a que el campo fecha_fin requería un valor obligatorio al actualizar el estado del rally. Si no se proporcionaba un valor explícito para este campo, la consulta SQL fallaba, lo que impedía que el sistema funcionara correctamente.
+
+Solución implementada
+Para solucionar este problema, modifiqué la estructura de la tabla rally para que el campo fecha_fin sea opcional y se inicialice automáticamente como NULL si no se proporciona un valor explícito. Esto lo logré ejecutando el siguiente comando SQL: ALTER TABLE rally MODIFY fecha_fin DATETIME DEFAULT NULL.
+
+Error 2: Implementación de rallys dinámicos automáticos
+Descripción del problema
+Intenté implementar un sistema de carruseles dinámicos automáticos para mostrar las fotos de los rallys. Sin embargo, no conseguí que el sistema funcionara correctamente de forma automática. Esto complicaba la gestión de las fotos y afectaba la experiencia de usuario.
+
+Causa del error
+El problema radicaba en la dificultad de integrar correctamente el carrusel dinámico con las fotos de los rallys, especialmente al intentar mantener la separación entre el frontend y el backend. Esto generaba inconsistencias en el diseño y en la funcionalidad.
+
+Solución implementada
+Para solucionar este problema, decidí simplificar el enfoque eliminando los carruseles dinámicos y optando por mostrar las fotos en contenedores fijos. Esto permitió mantener un diseño más limpio y funcional, además de facilitar la gestión de las fotos en el sistema.
