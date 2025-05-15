@@ -19,14 +19,14 @@
         <div class="container" id="subir-imagen">
             <h2>Subir Imagen</h2>
             <form id="form-subir-imagen" action="../Backend/subir_imagen.php" method="POST" enctype="multipart/form-data">
-                 <input type="text" name="titulo" placeholder="Título de la imagen" required>
-                 <select name="id_rally" id="rally-select" required>
-                 <option value="">Selecciona un rally</option>
-        <!-- Opciones dinámicas -->
-    </select>
-    <input type="file" name="imagen" accept="image/*" required>
-    <button type="submit">Subir Imagen</button>
-</form>
+                <input type="text" name="titulo" placeholder="Título de la imagen" required>
+                <select name="id_rally" id="rally-select" required>
+                    <option value="">Selecciona un rally</option>
+                    <!-- Opciones dinámicas -->
+                </select>
+                <input type="file" name="imagen" accept="image/*" required>
+                <button type="submit">Subir Imagen</button>
+            </form>
         </div>
 
         <!-- Administrar Fotos -->
@@ -51,6 +51,6 @@
         </div>
     </div>
 
-    <script src="../scripts/participante.js"></script> <!-- Archivo JavaScript externo -->
+    <script src="../scripts/usuarios.js"></script>
 </body>
 </html>
