@@ -1,116 +1,83 @@
-/* General */
+/* formularios.css */
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fdf6e3; /* Fondo crema claro */
-    color: #5a5a5a; /* Gris oscuro */
+    margin: 0; padding: 0;
+    background-color: #fdf6e3;
+    color: #5a5a5a;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    padding-top: 4rem; /* Espacio para que el contenido no quede debajo de la cabecera fija */
+    padding-top: 4rem;
 }
-
-/* Cabecera */
 header {
-    position: fixed; /* Fija la cabecera en la parte superior */
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f5e6ca; /* Crema más fuerte para destacar */
-    color: #3d3d3d; /* Gris oscuro */
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    background-color: #f5e6ca;
+    color: #3d3d3d;
     text-align: center;
     padding: 1rem 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
-    z-index: 1000; /* Asegura que esté por encima del resto del contenido */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 1000;
 }
-
 header h1 {
     font-size: 2rem;
-    color: #3d3d3d; /* Gris oscuro */
+    color: #3d3d3d;
     margin: 0;
 }
-
-header a {
+header a, .back-link {
     display: inline-block;
     margin-top: 0.5rem;
     font-size: 1rem;
     color: #3d3d3d;
     text-decoration: none;
-    background-color: #f5e6ca; /* Crema más fuerte */
+    background-color: #f5e6ca;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
-
-header a:hover {
-    background-color: #e4d3b0; /* Crema más intenso */
+header a:hover, .back-link:hover {
+    background-color: #e4d3b0;
 }
-
-/* Contenedor del formulario */
 .container {
-    background-color: #ffffff; /* Fondo blanco */
+    background-color: #fff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     width: 100%;
     max-width: 400px;
     text-align: center;
 }
-
-/* Formulario */
 form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
-
 form input {
     padding: 0.8rem;
     font-size: 1rem;
-    border: 1px solid #e4d3b0; /* Borde crema más intenso */
+    border: 1px solid #e4d3b0;
     border-radius: 5px;
-    background-color: #f9f2e4; /* Fondo crema claro */
-    color: #3d3d3d; /* Texto gris oscuro */
+    background-color: #f9f2e4;
+    color: #3d3d3d;
 }
-
 form input:focus {
     outline: none;
-    border-color: #f5e6ca; /* Borde crema más fuerte */
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    border-color: #f5e6ca;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
 }
-
 form button {
     padding: 0.8rem;
     font-size: 1rem;
     font-weight: bold;
-    color: #ffffff;
-    background-color: #3d3d3d; /* Gris oscuro */
+    color: #fff;
+    background-color: #3d3d3d;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
-
 form button:hover {
-    background-color: #5a5a5a; /* Gris más claro */
-}
-
-/* Enlace para volver atrás */
-.back-link {
-    display: inline-block;
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: #3d3d3d;
-    text-decoration: none;
-    background-color: #f5e6ca; /* Crema más fuerte */
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.back-link:hover {
-    background-color: #e4d3b0; /* Crema más intenso */
+    background-color: #5a5a5a;
 }

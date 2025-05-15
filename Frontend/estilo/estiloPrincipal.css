@@ -1,148 +1,257 @@
+/* principal.css */
 /* General */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fdf6e3; /* Color crema claro */
-    color: #5a5a5a; /* Gris oscuro para el texto */
+    background-color: #fdf6e3;
+    color: #5a5a5a;
     line-height: 1.6;
 }
 
 /* Cabecera */
 header {
-    background-color: #f5e6ca; /* Crema más fuerte */
-    color: #3d3d3d; /* Gris más oscuro */
+    background-color: #f5e6ca;
+    color: #3d3d3d;
     padding: 1.5rem 0;
     position: relative;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex; /* Usamos flexbox para alinear los elementos */
-    justify-content: space-between; /* Espaciamos los elementos */
-    align-items: center; /* Centramos verticalmente */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-
-/* Enlace "Ranking" */
-header .ranking-link {
-    margin-left: 1rem; /* Espaciado a la izquierda */
-    color: #3d3d3d; /* Gris oscuro */
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #f5e6ca; /* Fondo crema */
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-header .ranking-link:hover {
-    background-color: #e4d3b0; /* Crema más intenso */
-}
-
-/* Título de la cabecera */
 header h1 {
     margin: 0;
     font-size: 2.5rem;
     font-weight: bold;
-    flex-grow: 1; /* Ocupa el espacio restante */
+    flex-grow: 1;
     text-align: center;
 }
-
-/* Enlace "Acceso" */
-header .access-link {
-    margin-right: 1rem; /* Espaciado a la derecha */
+header .ranking-link, header .access-link, header .back-button, header .logout-button {
     color: #3d3d3d;
+    background-color: #f5e6ca;
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    background-color: #f5e6ca;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
+    margin: 0 1rem;
+}
+header .ranking-link:hover, header .access-link:hover, header .back-button:hover, header .logout-button:hover {
+    background-color: #e4d3b0;
+}
+header .logout-button {
+    position: absolute; top: 50%; right: 1rem; transform: translateY(-50%);
+}
+header .back-button { margin-right: auto; }
+
+/* Contenedores principales */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+.container {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+.container h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #3d3d3d;
 }
 
-header .access-link:hover {
-    background-color: #e4d3b0; /* Crema más intenso */
-}
-
-/* Contenedor de rally */
+/* Rally */
 .rally-container {
-    background-color: #ffffff; /* Blanco para destacar */
+    background-color: #fff;
     margin: 1.5rem auto;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     max-width: 800px;
     text-align: center;
+    position: relative;
 }
-
 .rally-title {
     font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: #3d3d3d; /* Gris oscuro */
+    margin-bottom: 0.5rem;
+    color: #3d3d3d;
+    font-weight: bold;
 }
-
-/* Carrusel */
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    background-color: #f9f2e4; /* Crema claro */
-    border-radius: 8px;
-}
-
-.carousel img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Información de la imagen */
-.image-info {
-    text-align: left;
-    margin-top: 1rem;
-    background-color: #f9f2e4; /* Fondo crema claro */
-    padding: 1rem;
-    border-radius: 8px;
-}
-
-.image-info p {
-    margin: 0.5rem 0;
-    color: #5a5a5a; /* Gris oscuro */
-}
-
-.vote-link {
+.rally-date {
+    font-size: 1rem;
+    color: #fff;
+    background-color: #3d85c6;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
     display: inline-block;
     margin-top: 1rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+/* Galería de fotos */
+.rally-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+.rally-photo {
+    flex: 1 1 calc(33.333% - 10px);
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.rally-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.rally-photo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 120px; /* MÁS PEQUEÑO */
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+.photo-title {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+.photo-author, .photo-votes {
+    font-size: 0.9em;
+    color: #555;
+}
+.vote-link {
+    display: inline-block;
+    margin-top: 10px;
     padding: 0.5rem 1rem;
-    background-color: #f5e6ca; /* Crema más fuerte */
-    color: #3d3d3d; /* Gris oscuro */
+    background-color: #3d85c6;
+    color: #fff;
     text-decoration: none;
     border-radius: 5px;
+    font-size: 0.9rem;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
+}
+.vote-link:hover { background-color: #2c6aa6; }
+
+/* Administración de fotos (participante y admin) */
+#fotos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.foto-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 160px;
+    text-align: center;
+}
+.foto-imagen {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+.foto-detalles p {
+    margin: 0.5rem 0;
+    color: #5a5a5a;
+}
+.eliminar-foto, .validar-foto, .rechazar-foto {
+    background-color: #3d85c6;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.eliminar-foto { background-color: #e74c3c; }
+.eliminar-foto:hover { background-color: #c0392b; }
+.validar-foto { background-color: #27ae60; }
+.validar-foto:hover { background-color: #219150; }
+.rechazar-foto { background-color: #e67e22; }
+.rechazar-foto:hover { background-color: #ca6b13; }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-button:hover, .close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.vote-link:hover {
-    background-color: #e4d3b0; /* Crema más intenso */
-}
-
-/* Responsividad */
+/* Responsive */
 @media (max-width: 768px) {
-    .rally-container {
-        padding: 1rem;
-    }
-
-    .carousel {
-        gap: 0.5rem;
-    }
-
-    header h1 {
-        font-size: 2rem;
-    }
-
-    header .access-link {
-        font-size: 0.9rem;
-    }
-} 
+    main { padding: 1rem; }
+    .container, .rally-container { max-width: 100%; }
+    .rally-photo { flex: 1 1 calc(50% - 10px); }
+    .foto-item { width: 48%; }
+    header h1 { font-size: 2rem; }
+    header .logout-button { font-size: 0.9rem; }
+}
+@media (max-width: 480px) {
+    .rally-photo, .foto-item { flex: 1 1 100%; width: 100%; }
+}

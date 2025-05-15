@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración</title>
+    <link rel="stylesheet" href="estilo/estiloPrincipal.css"> <!-- Archivo CSS externo -->
 </head>
 <body>
-    <h1>Bienvenido al Panel de Administración</h1>
-    <a href="principal.html">Volver al inicio</a>
+    <!-- Cabecera -->
+    <header>
+        <h1>Zona Privada</h1>
+        <a href="../Backend/logout.php" class="logout-button">Cerrar Sesión</a>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Tarjeta: Gestionar Rallys -->
+        <div class="container">
+            <h2>Gestionar Rallys</h2>
+            <p>Visualiza todos los rallys existentes, crea nuevos o elimina los que ya no sean necesarios.</p>
+           <a href="rallys.html"> <button>Ver Rallys</button></a>
+        </div>
+
+        <!-- Tarjeta: Gestionar Usuarios -->
+        <div class="container">
+            <h2>Gestionar Usuarios</h2>
+            <p>Da de alta nuevos usuarios o elimina los existentes.</p>
+            <button>Gestionar Usuarios</button>
+        </div>
+
+        <!-- Tarjeta: Validar Fotografías -->
+        <div class="container">
+            <h2>Validar Fotografías</h2>
+            <p>Revisa las fotografías subidas por los participantes y decide si se admiten o se rechazan.</p>
+            <a href="administrar_fotos.html"><button>Validar Fotografías</button></a>
+        </div>
+
+        <!-- Tarjeta: Estadísticas -->
+        <div class="container">
+            <h2>Estadísticas</h2>
+            <p>Consulta estadísticas y resultados de los rallys.</p>
+            <button>Ver Estadísticas</button>
+        </div>
+    </main>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Rallys</title>
+    <link rel="stylesheet" href="estilo/estiloPrincipal.css"> <!-- Archivo CSS externo -->
+</head>
+<body>
+    <!-- Cabecera -->
+    <header>
+        <h1>Gestionar Rallys</h1>
+        <a href="admin.html" class="back-button">Volver</a>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Contenedor para mostrar los rallys -->
+        <div class="container">
+            <h2>Rallys Activos</h2>
+            <div id="rallys-container">
+                <p>Cargando rallys...</p>
+            </div>
+        </div>
+
+        <!-- Formulario para crear un nuevo rally -->
+        <div class="container">
+            <h2>Crear Nuevo Rally</h2>
+            <form id="crear-rally-form">
+                <input type="text" id="nombre-rally" placeholder="Nombre del Rally" required>
+                <label for="fecha-inicio-rally">Fecha de Inicio:</label>
+                <input type="date" id="fecha-inicio-rally" required>
+                <label for="fecha-fin-rally">Fecha de Finalización:</label>
+                <input type="date" id="fecha-fin-rally" required>
+                <button type="submit">Crear Rally</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Script para manejar la creación de rallys -->
+     <script src="../scripts/rally.js"></script>
+</body>
+</html>

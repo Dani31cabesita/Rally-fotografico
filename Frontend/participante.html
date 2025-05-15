@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Participante</title>
-    <link rel="stylesheet" href="estilo/estiloParticipante.css"> <!-- Archivo CSS externo -->
     <link rel="stylesheet" href="estilo/estiloPrincipal.css">
 </head>
 <body>
@@ -16,31 +15,39 @@
 
     <!-- Contenido principal -->
     <main>
+        <!-- Subir Imagen -->
         <div class="container" id="subir-imagen">
             <h2>Subir Imagen</h2>
+            <form id="form-subir-imagen" action="../Backend/subir_imagen.php" method="POST" enctype="multipart/form-data">
+                 <input type="text" name="titulo" placeholder="Título de la imagen" required>
+                 <select name="id_rally" id="rally-select" required>
+                 <option value="">Selecciona un rally</option>
+        <!-- Opciones dinámicas -->
+    </select>
+    <input type="file" name="imagen" accept="image/*" required>
+    <button type="submit">Subir Imagen</button>
+</form>
         </div>
+
+        <!-- Administrar Fotos -->
         <div class="container">
             <h2><a href="administrar_fotos.html">Administrar Fotos</a></h2>
         </div>
-        <div class="container">
+
+        <!-- Ver Perfil -->
+        <div class="container" id="ver-perfil">
             <h2>Ver Perfil</h2>
         </div>
     </main>
 
-    <!-- Modal para subir imagen -->
-    <div id="modal-subir-imagen" class="modal">
+    <!-- Modal para ver perfil -->
+    <div id="modal-ver-perfil" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <h2>Subir Imagen</h2>
-            <form method="POST" action="../Backend/subir_imagen.php" enctype="multipart/form-data">
-                <label for="titulo">Título de la Imagen:</label>
-                <input type="text" id="titulo" name="titulo" required>
-                
-                <label for="imagen">Seleccionar Imagen:</label>
-                <input type="file" id="imagen" name="imagen" accept="image/*" required>
-                
-                <button type="submit">Subir Imagen</button>
-            </form>
+            <h2>Perfil</h2>
+            <p><strong>Nombre:</strong> <span id="perfil-nombre"></span></p>
+            <p><strong>Correo:</strong> <span id="perfil-correo"></span></p>
+            <p><strong>Número de fotos subidas:</strong> <span id="perfil-num-fotos"></span></p>
         </div>
     </div>
 
