@@ -1,257 +1,368 @@
-/* principal.css */
-/* General */
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fdf6e3;
-    color: #5a5a5a;
-    line-height: 1.6;
+    background-color: #f7f9fc;
+    color: #222;
 }
 
-/* Cabecera */
+/* Cabecera clara con botones laterales */
 header {
-    background-color: #f5e6ca;
-    color: #3d3d3d;
-    padding: 1.5rem 0;
-    position: relative;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #005f73;
+    color: #fff;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: bold;
     flex-grow: 1;
     text-align: center;
+    margin: 0;
+    font-size: 1.8rem;
 }
-header .ranking-link, header .access-link, header .back-button, header .logout-button {
-    color: #3d3d3d;
-    background-color: #f5e6ca;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin: 0 1rem;
-}
-header .ranking-link:hover, header .access-link:hover, header .back-button:hover, header .logout-button:hover {
-    background-color: #e4d3b0;
-}
-header .logout-button {
-    position: absolute; top: 50%; right: 1rem; transform: translateY(-50%);
-}
-header .back-button { margin-right: auto; }
-
-/* Contenedores principales */
-main {
+.header-buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 0.8rem;
+}
+header a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #94d2bd;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+header a:hover {
+    background-color: #76c7b7;
+}
+
+/* Contenedor principal */
+main {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .container {
-    background-color: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 800px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(61,90,128,0.08);
+    border: 1.5px solid #e0fbfc;
+    padding: 2rem 1.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: box-shadow 0.2s, border 0.2s;
 }
-.container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+.container:not(:last-child) {
+    margin-bottom: 2.5rem;
 }
 .container h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #3d3d3d;
+    color: #3d5a80;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 0;
 }
-
-/* Rally */
-.rally-container {
-    background-color: #fff;
-    margin: 1.5rem auto;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    max-width: 800px;
-    text-align: center;
-    position: relative;
-}
-.rally-title {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    color: #3d3d3d;
-    font-weight: bold;
-}
-.rally-date {
-    font-size: 1rem;
-    color: #fff;
-    background-color: #3d85c6;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    display: inline-block;
-    margin-top: 1rem;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-}
-
-/* Galería de fotos */
-.rally-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1.5rem;
-}
-.rally-photo {
-    flex: 1 1 calc(33.333% - 10px);
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    background-color: #fff;
-    text-align: center;
-    padding: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.rally-photo:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-.rally-photo img {
-    max-width: 100%;
-    height: auto;
-    max-height: 120px; /* MÁS PEQUEÑO */
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
-    object-fit: cover;
-}
-.photo-title {
-    font-size: 1em;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
-}
-.photo-author, .photo-votes {
-    font-size: 0.9em;
+.container p {
     color: #555;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
 }
-.vote-link {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 0.5rem 1rem;
-    background-color: #3d85c6;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-.vote-link:hover { background-color: #2c6aa6; }
-
-/* Administración de fotos (participante y admin) */
-#fotos-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    margin-top: 1rem;
-}
-.foto-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ddd;
+.container button, .container a button {
+    margin-top: 0.7rem;
+    padding: 0.5rem 1.2rem;
     border-radius: 8px;
-    padding: 1rem;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 160px;
+    border: none;
+    background: #005f73;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.container button:hover, .container a button:hover {
+    background: #3d5a80;
+}
+.bases-concurso {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(61,90,128,0.08);
+    border: 1.5px solid #e0fbfc;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    margin: 2rem auto 2.5rem auto;
+    max-width: 700px;
     text-align: center;
 }
-.foto-imagen {
-    width: 100%;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 8px;
+.bases-concurso h2 {
+    color: #3d5a80;
+    font-size: 1.4rem;
+    margin-top: 0;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
-.foto-detalles p {
-    margin: 0.5rem 0;
-    color: #5a5a5a;
+.bases-concurso ul {
+    list-style: disc inside;
+    text-align: left;
+    margin: 0 auto 1.5rem auto;
+    padding: 0 0 0 1.2em;
+    max-width: 600px;
 }
-.eliminar-foto, .validar-foto, .rechazar-foto {
-    background-color: #3d85c6;
+.bases-concurso li {
+    margin-bottom: 0.7em;
+    font-size: 1.08rem;
+    color: #222;
+}
+.boton-ir-rallys {
+    background: #005f73;
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0.2rem;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-.eliminar-foto { background-color: #e74c3c; }
-.eliminar-foto:hover { background-color: #c0392b; }
-.validar-foto { background-color: #27ae60; }
-.validar-foto:hover { background-color: #219150; }
-.rechazar-foto { background-color: #e67e22; }
-.rechazar-foto:hover { background-color: #ca6b13; }
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-}
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
     border-radius: 8px;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: center;
-}
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    padding: 0.7em 2em;
+    font-size: 1.1rem;
+    font-weight: 500;
     cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5em;
+    box-shadow: 0 2px 8px rgba(61,90,128,0.08);
 }
-.close-button:hover, .close-button:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.boton-ir-rallys:hover {
+    background: #3d5a80;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    main { padding: 1rem; }
-    .container, .rally-container { max-width: 100%; }
-    .rally-photo { flex: 1 1 calc(50% - 10px); }
-    .foto-item { width: 48%; }
-    header h1 { font-size: 2rem; }
-    header .logout-button { font-size: 0.9rem; }
+/* Contenedor de cada rally */
+.rally-container {
+    background-color: #e0fbfc;
+    border-left: 5px solid #3d5a80;
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
 }
-@media (max-width: 480px) {
-    .rally-photo, .foto-item { flex: 1 1 100%; width: 100%; }
+.rally-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #3d5a80;
+    font-weight: 600;
+}
+
+/* Galería de fotos por rally */
+.rally-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+/* IMÁGENES GRANDES Y VISIBLES */
+.foto-imagen,
+.foto-item img,
+.rally-photo img {
+    display: block;
+    margin: 0 auto 1rem auto;
+    max-width: 220px;
+    max-height: 220px;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2.5px solid #3d5a80;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    background: #fff;
+}
+
+/* Contenedor de cada foto en la lista */
+.foto-item,
+.rally-photo {
+    background: #f7f9fc;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 2rem 1rem 1.5rem 1rem;
+    margin-bottom: 2rem;
+    border: 1.5px solid #e0fbfc;
+    text-align: center;
+    min-width: 240px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.foto-item:hover,
+.rally-photo:hover {
+    box-shadow: 0 4px 24px rgba(61,90,128,0.13);
+    transform: scale(1.03);
+}
+
+/* Detalles de la foto */
+.foto-detalles p,
+.photo-title,
+.photo-author,
+.photo-votes {
+    margin: 0.3rem 0;
+    color: #222;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.photo-title {
+    color: #3d5a80;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+.photo-author,
+.photo-votes {
+    font-size: 1rem;
+    color: #555;
+    margin: 0.2rem 0;
+}
+
+/* Botones de acción en administración/participante */
+.foto-detalles button {
+    margin: 0.6rem 0.3rem 0 0.3rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    background: #005f73;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.foto-detalles button:hover {
+    background: #3d5a80;
+}
+
+/* Panel de opciones en admin/participante: separación clara entre tarjetas */
+.panel-opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2.5rem 0;
+}
+
+/* Tarjeta de opción individual */
+.opcion-tarjeta {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(61,90,128,0.08);
+    border: 1.5px solid #e0fbfc;
+    padding: 2rem 1.5rem;
+    margin: 0 auto;
+    max-width: 500px;
+    transition: box-shadow 0.2s, border 0.2s;
+}
+.opcion-tarjeta:hover {
+    box-shadow: 0 4px 18px rgba(61,90,128,0.13);
+    border-color: #94d2bd;
+}
+.opcion-tarjeta h2 {
+    margin-top: 0;
+    color: #3d5a80;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.opcion-tarjeta p {
+    color: #555;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+}
+.opcion-tarjeta button, .opcion-tarjeta a button {
+    margin-top: 0.7rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    background: #005f73;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.opcion-tarjeta button:hover, .opcion-tarjeta a button:hover {
+    background: #3d5a80;
+}
+
+/* Separador visual entre tarjetas */
+.opcion-separador {
+    border: none;
+    border-top: 2px solid #e0fbfc;
+    margin: 0 0 2rem 0;
+    width: 100%;
+}
+
+/* Separadores para opciones admin/participante (listas simples) */
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 2rem 0 0 0;
+    padding: 0;
+}
+.options-list .option {
+    padding: 1rem 0.5rem;
+    background: #f7f9fc;
+    color: #222;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    transition: background 0.2s;
+}
+.options-list .option:hover {
+    background: #e0fbfc;
+}
+.options-list .separator {
+    border: none;
+    border-top: 1.5px solid #e0fbfc;
+    margin: 0;
+}
+
+/* Responsive: tamaño grande pero adaptado en móvil */
+@media (max-width: 900px) {
+    .rally-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.2rem;
+    }
+    .foto-imagen,
+    .foto-item img,
+    .rally-photo img {
+        max-width: 140px;
+        max-height: 140px;
+        height: 140px;
+    }
+    .foto-item,
+    .rally-photo {
+        min-width: 0;
+        padding: 1rem 0.3rem;
+    }
+    .opcion-tarjeta {
+        padding: 1rem 0.5rem;
+        max-width: 98vw;
+    }
+}
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .header-buttons {
+        margin-top: 0.8rem;
+    }
+    .rally-gallery {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .foto-imagen,
+    .foto-item img,
+    .rally-photo img {
+        max-width: 95vw;
+        max-height: 110px;
+        height: 110px;
+    }
+    .foto-item,
+    .rally-photo {
+        min-width: 0;
+        padding: 0.7rem 0.2rem;
+    }
+    .opcion-tarjeta {
+        padding: 1rem 0.5rem;
+        max-width: 99vw;
+    }
 }

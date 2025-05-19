@@ -1,4 +1,3 @@
-<!-- filepath: c:\Users\danie\OneDrive\Desktop\TFG\Backend\registro.php -->
 <?php
 require_once '../utiles/funciones.php';
 require_once '../utiles/variables.php';

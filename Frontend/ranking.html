@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking de Fotos - Rally Fotográfico</title>
+    <link rel="stylesheet" href="estilo/estiloPrincipal.css">
+</head>
+<body>
+    <header>
+        <a href="principal.html" class="ranking-link">Inicio</a>
+        <h1>Ranking de Fotos</h1>
+        <a href="login.html" class="access-link">Acceso</a>
+    </header>
+    <main>
+        <section class="container" id="ranking-section">
+            <h2>Ranking de Fotografías</h2>
+            <div id="ranking-list"></div>
+        </section>
+    </main>
+    <script>
+    // Detecta si es admin (puedes mejorar esto con login real)
+    const isAdmin = localStorage.getItem('rol') === 'admin';
+
+    fetch('../Backend/ranking.php' + (isAdmin ? '?admin=1' : ''))
+        .then(res => res.json())
+        .then(datos => {
+            const rankingList = document.getElementById('ranking-list');
+            if (!Array.isArray(datos) || datos.length === 0) {
+                rankingList.innerHTML = '<p>No hay fotos en el ranking.</p>';
+                return;
+            }
+            let html = '';
+            datos.forEach((foto, idx) => {
+                html += `
+                <div class="rally-photo" style="margin-bottom:2rem;">
+                    <div style="font-size:1.2em;font-weight:600;color:#3d5a80;">#${idx+1}</div>
+                    <img src="${foto.ruta_archivo}" alt="${foto.titulo}" class="foto-imagen">
+                    <div class="photo-title">${foto.titulo}</div>
+                    <div class="photo-votes">Votos: ${foto.num_votos}</div>
+                    ${isAdmin ? `
+                        <div class="photo-author">Autor: ${foto.autor_nombre} (${foto.autor_email})</div>
+                        <div class="photo-author" style="color:#005f73;">Total votos del autor: ${foto.votos_autor}</div>
+                    ` : ''}
+                </div>
+                `;
+            });
+            rankingList.innerHTML = html;
+        });
+    </script>
+</body>
+</html>

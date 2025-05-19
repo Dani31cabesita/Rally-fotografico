@@ -17,3 +17,12 @@ El problema radicaba en la dificultad de integrar correctamente el carrusel din�
 
 Solución implementada
 Para solucionar este problema, decidí simplificar el enfoque eliminando los carruseles dinámicos y optando por mostrar las fotos en contenedores fijos. Esto permitió mantener un diseño más limpio y funcional, además de facilitar la gestión de las fotos en el sistema.
+
+Error 3: Los rallys activos no aparecen en el desplegable al subir una foto
+Descripción del problema
+Al intentar subir una foto, en el desplegable para seleccionar un rally no aparecen los rallys activos, aunque existan en la base de datos y tengan fechas válidas.
+
+Causa del error
+El sistema no muestra los rallys activos en el desplegable porque, aunque existen en la base de datos, puede que el estado no se actualice correctamente o la consulta no los devuelva como se espera. Además, puede haber un problema en el frontend al procesar la respuesta del backend.
+
+Solución implementada

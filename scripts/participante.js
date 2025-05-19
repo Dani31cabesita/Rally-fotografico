@@ -12,13 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert(data.error);
                     return;
                 }
-
-                // Mostrar los datos del perfil en el modal
                 document.getElementById('perfil-nombre').textContent = data.nombre;
                 document.getElementById('perfil-correo').textContent = data.email;
                 document.getElementById('perfil-num-fotos').textContent = data.num_fotos;
-
-                // Abrir el modal
                 modalVerPerfil.style.display = 'block';
             })
             .catch(error => {
@@ -26,20 +22,32 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Hubo un problema al cargar el perfil.');
             });
     });
-fetch('../Backend/gestion_rallys.php')
-    .then(response => response.json())
-    .then(data => {
-        const select = document.getElementById('rally-select');
-        select.innerHTML = '<option value="">Selecciona un rally</option>';
-        if (Array.isArray(data)) {
-            data.forEach(rally => {
-                const option = document.createElement('option');
-                option.value = rally.id_rally;
-                option.textContent = `${rally.nombre} (finaliza: ${rally.fecha_fin})`;
-                select.appendChild(option);
-            });
-        }
-    });
+
+    // Cargar rallys activos en el select
+    fetch('../Backend/gestion_rallys.php')
+        .then(response => response.json())
+        .then(data => {
+            const select = document.getElementById('rally-select');
+            select.innerHTML = '<option value="">Selecciona un rally</option>';
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach(rally => {
+                    const option = document.createElement('option');
+                    option.value = rally.id_rally;
+                    option.textContent = `${rally.nombre} (Del ${rally.fecha_inicio} al ${rally.fecha_fin})`;
+                    select.appendChild(option);
+                });
+            } else {
+                // Si no hay rallys activos, deshabilita el select
+                select.innerHTML = '<option value="">No hay rallys activos disponibles</option>';
+                select.disabled = true;
+            }
+        })
+        .catch(() => {
+            const select = document.getElementById('rally-select');
+            select.innerHTML = '<option value="">Error al cargar los rallys</option>';
+            select.disabled = true;
+        });
+
     // Cerrar el modal al hacer clic en el botón de cerrar
     closeButton.addEventListener('click', function () {
         modalVerPerfil.style.display = 'none';

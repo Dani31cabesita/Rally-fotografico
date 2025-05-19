@@ -77,4 +77,22 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(() => {
             fotosContainer.innerHTML = '<p>Error al cargar las fotos.</p>';
         });
+
+    // Botón volver: redirige según el rol
+    const volverBtn = document.getElementById('volver-btn');
+    if (volverBtn) {
+        volverBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            fetch('../Backend/gestion_usuarios.php')
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.rol === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.href = 'participante.html';
+                    }
+                })
+                .catch(() => window.location.href = 'participante.html');
+        });
+    }
 });

@@ -4,6 +4,9 @@ require_once '../utiles/variables.php';
 
 $conexion = conectarPDO($host, $user, $password, $bbdd);
 
+// Actualiza el estado de los rallys que han pasado su fecha fin
+$conexion->exec("UPDATE rally SET estado = 'finalizado' WHERE estado = 'activo' AND fecha_fin < CURDATE()");
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre'] ?? '');
     $fecha_inicio = trim($_POST['fecha_inicio'] ?? '');
@@ -31,11 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// GET: rallys activos (por fecha y estado)
+// GET: rallys activos (por estado)
 $sql = "SELECT id_rally, nombre, fecha_inicio, fecha_fin
         FROM rally
-        WHERE CURDATE() BETWEEN DATE(fecha_inicio) AND DATE(fecha_fin)
-          AND estado = 'activo'
+        WHERE estado = 'activo'
         ORDER BY fecha_fin ASC";
 $stmt = $conexion->prepare($sql);
 $stmt->execute();

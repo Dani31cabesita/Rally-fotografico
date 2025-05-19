@@ -43,7 +43,7 @@ if (!move_uploaded_file($_FILES['imagen']['tmp_name'], $ruta_archivo)) {
     exit;
 }
 
-// Insertar en la base de datos (estado pendiente por defecto)
+// Insertar en la base de datos 
 $stmt = $conexion->prepare("INSERT INTO fotografias (id_usuario, id_rally, titulo, ruta_archivo) VALUES (:id_usuario, :id_rally, :titulo, :ruta_archivo)");
 $stmt->bindParam(':id_usuario', $id_usuario);
 $stmt->bindParam(':id_rally', $id_rally);

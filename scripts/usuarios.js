@@ -9,26 +9,26 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(res => res.json())
             .then(data => {
                 usuariosContainer.innerHTML = '';
-                if (data && data.rol) {
-                    // Participante: mostrar solo sus datos
-                    usuariosContainer.innerHTML = `
-                        <p><strong>Nombre:</strong> ${data.nombre}</p>
-                        <p><strong>Correo:</strong> ${data.email}</p>
-                        <p><strong>Número de fotos:</strong> ${data.num_fotos}</p>
-                    `;
-                } else if (Array.isArray(data)) {
+                if (data && data.rol === 'admin' && Array.isArray(data.usuarios)) {
                     // Admin: mostrar todos los usuarios
                     if (crearUsuarioContainer) crearUsuarioContainer.style.display = 'block';
                     const ul = document.createElement('ul');
-                    data.forEach(usuario => {
+                    data.usuarios.forEach(usuario => {
                         const li = document.createElement('li');
                         li.innerHTML = `
-                            <strong>${usuario.nombre}</strong> (${usuario.email}) - Rol: ${usuario.rol} - Fotos: ${usuario.num_fotos}
-                            ${usuario.rol === 'participante' ? `<button class="eliminar-usuario" data-id="${usuario.id_usuario}">Eliminar</button>` : ''}
-                        `;
+                <strong>${usuario.nombre}</strong> (${usuario.email}) - Rol: ${usuario.rol} - Fotos: ${usuario.num_fotos}
+                ${usuario.rol === 'participante' ? `<button class="eliminar-usuario" data-id="${usuario.id_usuario}">Eliminar</button>` : ''}
+            `;
                         ul.appendChild(li);
                     });
                     usuariosContainer.appendChild(ul);
+                } else if (data && data.rol) {
+                    // Participante: mostrar solo sus datos
+                    usuariosContainer.innerHTML = `
+            <p><strong>Nombre:</strong> ${data.nombre}</p>
+            <p><strong>Correo:</strong> ${data.email}</p>
+            <p><strong>Número de fotos:</strong> ${data.num_fotos}</p>
+        `;
                 } else {
                     usuariosContainer.innerHTML = '<p>No hay datos para mostrar.</p>';
                 }
@@ -47,15 +47,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    alert(data.success);
-                    location.reload();
-                } else {
-                    alert(data.error || 'Error al crear usuario');
-                }
-            });
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.success);
+                        location.reload();
+                    } else {
+                        alert(data.error || 'Error al crear usuario');
+                    }
+                });
         });
     }
 
@@ -69,15 +69,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         method: 'DELETE',
                         body: `id_usuario=${id}`
                     })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert(data.success);
-                            location.reload();
-                        } else {
-                            alert(data.error || 'Error al eliminar usuario');
-                        }
-                    });
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert(data.success);
+                                location.reload();
+                            } else {
+                                alert(data.error || 'Error al eliminar usuario');
+                            }
+                        });
                 }
             }
         });
@@ -107,14 +107,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (closeBtn && modal) {
-        closeBtn.onclick = function() {
+        closeBtn.onclick = function () {
             modal.style.display = 'none';
         };
     }
 
     // Cerrar modal al hacer clic fuera
     if (modal) {
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
             }

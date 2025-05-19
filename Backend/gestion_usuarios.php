@@ -88,6 +88,7 @@ if ($rol === 'participante') {
     $stmt->bindParam(':id_usuario', $id_usuario);
     $stmt->execute();
     $datos = $stmt->fetch(PDO::FETCH_ASSOC);
+    $datos['rol'] = $rol; // <-- AÑADE EL ROL
     header('Content-Type: application/json');
     echo json_encode($datos);
     exit;
@@ -103,7 +104,11 @@ if ($rol === 'admin') {
     $stmt->execute();
     $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     header('Content-Type: application/json');
-    echo json_encode($usuarios);
+    // DEVUELVE TAMBIÉN EL ROL DEL USUARIO ACTUAL
+    echo json_encode([
+        'rol' => $rol,
+        'usuarios' => $usuarios
+    ]);
     exit;
 }
 ?>
