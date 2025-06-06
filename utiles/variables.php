@@ -5,11 +5,4 @@
 	$user = "pepito01";
 	$password = "pepito01";
 	$bbdd = "rally_fotografico";
-
-	//$host = db5017899877.hosting-data.io //ionos
-	//$user = "dbu1669154";
-	//$password = "_pepito01_";
-	//$bbdd = "dbs14255245";
-
-
 ?>
