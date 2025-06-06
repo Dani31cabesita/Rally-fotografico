@@ -1,6 +1,8 @@
 <?php
-require_once '../utiles/funciones.php';
-require_once '../utiles/variables.php';
+//Registro de nuevos usuarios, validando datos y mostrando errores si los hay
+
+require_once '../utiles/funciones.php'; // Funciones auxiliares
+require_once '../utiles/variables.php'; // Variables de conexión
 
 // Conectar a la base de datos
 $conexion = conectarPDO($host, $user, $password, $bbdd);
@@ -13,7 +15,7 @@ $password = obtenerValorCampo('password');
 
 // Procesar el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validar campos
+    // Validar campos obligatorios
     if (!validar_requerido($nombre)) {
         $errores[] = "El campo 'Nombre' es obligatorio.";
     }
@@ -44,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindParam(':password', $passwordHash);
 
             if ($stmt->execute()) {
-                header('Location: ../Frontend/principal.html');
+                header('Location: ../Frontend/principal.html'); // Redirige tras registro exitoso
                 exit;
             } else {
                 $errores[] = "Error al registrar al usuario. Inténtelo de nuevo.";
@@ -56,12 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="../Frontend/estilo/estiloFormularios.css">
 </head>
+
 <body>
     <header>
         <h1>Registro</h1>
@@ -78,12 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
         <form method="POST" action="registro.php">
+            <!-- Formulario de registro -->
             <input type="text" name="nombre" placeholder="Nombre" value="<?php echo htmlspecialchars($nombre); ?>" required>
             <input type="email" name="email" placeholder="Correo" value="<?php echo htmlspecialchars($email); ?>" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             <button type="submit">Registrarse</button>
         </form>
     </div>
-    <a class="back-link" href="../Frontend/principal.html">Volver atrás</a>
+    <a class="back-link" href="../Frontend/index.html">Volver atrás</a>
 </body>
+
 </html>

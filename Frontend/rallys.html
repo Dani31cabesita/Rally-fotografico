@@ -1,13 +1,17 @@
+<!-- Página de administración para listar y crear rallys -->
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestionar Rallys</title>
     <link rel="stylesheet" href="estilo/estiloPrincipal.css"> <!-- Archivo CSS externo -->
 </head>
+
 <body>
-    <!-- Cabecera -->
+    <!-- Cabecera con título y botón para volver al panel admin -->
     <header>
         <h1>Gestionar Rallys</h1>
         <a href="admin.html" class="back-button">Volver</a>
@@ -15,7 +19,7 @@
 
     <!-- Contenido principal -->
     <main>
-        <!-- Contenedor para mostrar los rallys -->
+        <!-- Contenedor para mostrar los rallys activos -->
         <div class="container">
             <h2>Rallys Activos</h2>
             <div id="rallys-container">
@@ -37,7 +41,8 @@
         </div>
     </main>
 
-    <!-- Script para manejar la creación de rallys -->
-     <script src="../scripts/rally.js"></script>
+    <!-- Script para manejar la creación y listado de rallys -->
+    <script src="../scripts/rally.js"></script>
 </body>
+
 </html>

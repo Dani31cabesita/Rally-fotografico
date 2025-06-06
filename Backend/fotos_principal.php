@@ -1,10 +1,11 @@
 <?php
+// Devuelve las fotos admitidas agrupadas por rally activo, con info de autor y votos
 require_once '../utiles/funciones.php';
 require_once '../utiles/variables.php';
 
 $conexion = conectarPDO($host, $user, $password, $bbdd);
 
-// Rallys activos con al menos una foto aprobada
+// Consulta de las fotos admitidas de rallys activos
 $sql = "
 SELECT 
     r.id_rally,
@@ -24,6 +25,7 @@ WHERE r.estado = 'activo'
   )
 ORDER BY r.nombre, f.num_votos DESC, f.titulo
 ";
+
 $stmt = $conexion->prepare($sql);
 $stmt->execute();
 $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -31,4 +33,3 @@ $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 header('Content-Type: application/json');
 echo json_encode($datos);
 exit;
-?>

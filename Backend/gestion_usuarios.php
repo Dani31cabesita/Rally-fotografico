@@ -1,8 +1,11 @@
 <?php
-require_once '../utiles/funciones.php';
-require_once '../utiles/variables.php';
-session_start();
+//crear, eliminar, listar y ver perfil para admin y participantes
 
+require_once '../utiles/funciones.php'; // Funciones auxiliares
+require_once '../utiles/variables.php'; // Variables de conexión
+session_start(); // Inicia sesión
+
+// Comprueba si el usuario está autenticado y tiene rol
 if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['rol'])) {
     http_response_code(403);
     echo json_encode(['error' => 'No autorizado']);
@@ -19,13 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $rol === 'admin') {
     $email = trim($_POST['email'] ?? '');
     $password = trim($_POST['password'] ?? '');
 
+    // Comprueba que no falten datos
     if (!$nombre || !$email || !$password) {
         http_response_code(400);
         echo json_encode(['error' => 'Faltan datos']);
         exit;
     }
 
-    // Comprobar si el email ya existe
+    // Comprueba si el email ya existe
     $stmt = $conexion->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email");
     $stmt->bindParam(':email', $email);
     $stmt->execute();
@@ -35,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $rol === 'admin') {
         exit;
     }
 
+    // Inserta el nuevo usuario
     $hash = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, email, password, rol) VALUES (:nombre, :email, :password, 'participante')");
     $stmt->bindParam(':nombre', $nombre);
@@ -55,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE' && $rol === 'admin') {
     parse_str(file_get_contents("php://input"), $delete_vars);
     $id_borrar = intval($delete_vars['id_usuario'] ?? 0);
 
+    // Comprueba ID válido
     if ($id_borrar <= 0) {
         http_response_code(400);
         echo json_encode(['error' => 'ID inválido']);
@@ -68,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE' && $rol === 'admin') {
         exit;
     }
 
+    // Elimina solo participantes
     $stmt = $conexion->prepare("DELETE FROM usuarios WHERE id_usuario = :id_usuario AND rol = 'participante'");
     $stmt->bindParam(':id_usuario', $id_borrar);
     if ($stmt->execute()) {
@@ -88,7 +95,7 @@ if ($rol === 'participante') {
     $stmt->bindParam(':id_usuario', $id_usuario);
     $stmt->execute();
     $datos = $stmt->fetch(PDO::FETCH_ASSOC);
-    $datos['rol'] = $rol; // <-- AÑADE EL ROL
+    $datos['rol'] = $rol; // Añade el rol al resultado
     header('Content-Type: application/json');
     echo json_encode($datos);
     exit;
@@ -104,11 +111,10 @@ if ($rol === 'admin') {
     $stmt->execute();
     $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     header('Content-Type: application/json');
-    // DEVUELVE TAMBIÉN EL ROL DEL USUARIO ACTUAL
+    // Devuelve también el rol del usuario actual
     echo json_encode([
         'rol' => $rol,
         'usuarios' => $usuarios
     ]);
     exit;
 }
-?>

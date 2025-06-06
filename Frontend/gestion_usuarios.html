@@ -1,20 +1,27 @@
+<!-- Página de administración para listar, crear y eliminar usuarios -->
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Usuarios</title>
-    <link rel="stylesheet" href="estilo/estiloPrincipal.css">
+    <link rel="stylesheet" href="estilo/estiloPrincipal.css"> <!-- Estilos principales -->
 </head>
+
 <body>
+    <!-- Cabecera con título y botón para volver al panel admin -->
     <header>
         <h1>Gestión de Usuarios</h1>
         <a href="admin.html" class="back-button">Volver</a>
     </header>
     <main>
+        <!-- Contenedor para la lista de usuarios -->
         <div class="container" id="usuarios-container">
             <h2>Usuarios</h2>
             <p>Cargando...</p>
         </div>
+        <!-- Formulario para crear un nuevo participante -->
         <div class="container" id="crear-usuario-container" style="display:none;">
             <h2>Crear Nuevo Participante</h2>
             <form id="crear-usuario-form">
@@ -25,6 +32,8 @@
             </form>
         </div>
     </main>
+    <!-- Script para gestionar usuarios -->
     <script src="../scripts/usuarios.js"></script>
 </body>
+
 </html>

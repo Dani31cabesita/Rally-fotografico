@@ -1,8 +1,10 @@
 <?php
+// Gestión de fotos para admin y participantes (validar, rechazar, eliminar, listar)
 require_once '../utiles/funciones.php';
 require_once '../utiles/variables.php';
-session_start();
+session_start(); // Inicia sesión
 
+// Comprueba si el usuario está autenticado y tiene rol
 if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['rol'])) {
     http_response_code(403);
     echo json_encode(['error' => 'No autorizado']);
@@ -13,11 +15,12 @@ $conexion = conectarPDO($host, $user, $password, $bbdd);
 $rol = $_SESSION['rol'];
 $id_usuario = $_SESSION['id_usuario'];
 
-// Cambiar estado de una foto (validar/rechazar) o eliminar si es participante
+// POST: Para cambiar estado o eliminar foto
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_foto = intval($_POST['id_foto'] ?? 0);
     $accion = $_POST['accion'] ?? '';
 
+    // Admin puede admitir o rechazar fotos
     if ($rol === 'admin' && in_array($accion, ['admitida', 'rechazada'])) {
         $stmt = $conexion->prepare("UPDATE fotografias SET estado = :estado WHERE id_foto = :id_foto");
         $stmt->bindParam(':estado', $accion);
@@ -25,8 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ok = $stmt->execute();
         echo json_encode(['success' => $ok]);
         exit;
+
+        // El participante puede eliminar su foto si no está admitida
     } elseif ($rol === 'participante' && $accion === 'eliminar') {
-        // Solo puede eliminar si es suya y no está admitida
         $stmt = $conexion->prepare("DELETE FROM fotografias WHERE id_foto = :id_foto AND id_usuario = :id_usuario AND estado != 'admitida'");
         $stmt->bindParam(':id_foto', $id_foto);
         $stmt->bindParam(':id_usuario', $id_usuario);
@@ -38,8 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// GET: Listar fotos
+// GET: Para listar fotos
 if ($rol === 'admin') {
+    // El admin ve todas las fotos con autor y rally
     $sql = "SELECT f.id_foto, f.titulo, f.estado, f.ruta_archivo, u.nombre AS autor, r.nombre AS rally
             FROM fotografias f
             JOIN usuarios u ON f.id_usuario = u.id_usuario
@@ -49,6 +54,7 @@ if ($rol === 'admin') {
     $stmt->execute();
     $fotos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
+    // El participante ve solo sus fotos
     $sql = "SELECT f.id_foto, f.titulo, f.estado, f.ruta_archivo, r.nombre AS rally
             FROM fotografias f
             JOIN rally r ON f.id_rally = r.id_rally
@@ -60,7 +66,6 @@ if ($rol === 'admin') {
     $fotos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-header('Content-Type: application/json');
+header('Content-Type: application/json'); // Devuelve JSON
 echo json_encode($fotos);
 exit;
-?>

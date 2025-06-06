@@ -1,16 +1,22 @@
+<!-- Página de acceso para usuarios (login) -->
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso</title>
     <link rel="stylesheet" href="estilo/estiloFormularios.css"> <!-- Archivo CSS externo -->
 </head>
+
 <body>
+    <!-- Cabecera con título y enlace a registro -->
     <header>
         <h1>Acceso</h1>
         <a href="registro.html">Registro</a>
     </header>
+    <!-- Formulario de login -->
     <div class="container">
         <form method="POST" action="../Backend/login.php">
             <input type="email" name="email" placeholder="Correo" required>
@@ -18,6 +24,8 @@
             <button type="submit">Acceder</button>
         </form>
     </div>
-    <a class="back-link" href="principal.html">Volver atrás</a>
+    <!-- Enlace para volver a la página principal -->
+    <a class="back-link" href="index.html">Volver atrás</a>
 </body>
+
 </html>

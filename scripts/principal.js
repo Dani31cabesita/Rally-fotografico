@@ -1,5 +1,9 @@
+//Muestra los rallys activos con fotos admitidas y permite votar por fotos favoritas
+
 document.addEventListener('DOMContentLoaded', function () {
     const rallysLista = document.getElementById('rallys-lista');
+
+    // Solicita al backend las fotos admitidas agrupadas por rally activo
     fetch('../Backend/fotos_principal.php')
         .then(res => res.json())
         .then(datos => {
@@ -9,13 +13,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // Agrupar por rally
+            // Agrupa las fotos por nombre de rally
             const agrupados = {};
             datos.forEach(item => {
                 if (!agrupados[item.rally_nombre]) agrupados[item.rally_nombre] = [];
                 agrupados[item.rally_nombre].push(item);
             });
 
+            // Por cada rally, crea un bloque con su galería de fotos admitidas
             Object.keys(agrupados).forEach(rally => {
                 const divRally = document.createElement('div');
                 divRally.className = 'rally-container';
@@ -24,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const galeria = document.createElement('div');
                 galeria.className = 'rally-gallery';
 
+                // Añade cada foto admitida al bloque del rally
                 agrupados[rally].forEach(foto => {
                     const fotoDiv = document.createElement('div');
                     fotoDiv.className = 'rally-photo';
@@ -41,11 +47,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 rallysLista.appendChild(divRally);
             });
 
-            // Añadir funcionalidad de voto
+            // Añade funcionalidad de voto a cada botón "Votar como favorita"
             rallysLista.querySelectorAll('.vote-link').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const idFoto = this.getAttribute('data-id');
                     const votosDiv = this.parentElement.querySelector('.photo-votes');
+                    // Envía el voto al backend
                     fetch('../Backend/votar.php', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -54,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         .then(res => res.json())
                         .then(data => {
                             if (data.success) {
+                                // Actualiza el contador de votos y deshabilita el botón
                                 votosDiv.textContent = 'Votos: ' + data.nuevos_votos;
                                 this.disabled = true;
                                 this.textContent = '¡Votado!';

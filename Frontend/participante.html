@@ -1,24 +1,29 @@
+<!-- Panel privado para participantes (subir fotos, administrar fotos y ver perfil) -->
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Participante</title>
     <link rel="stylesheet" href="estilo/estiloPrincipal.css">
 </head>
+
 <body>
-    <!-- Cabecera -->
+    <!-- Cabecera con título y botón de cerrar sesión -->
     <header>
         <h1>Zona Privada</h1>
         <a href="../Backend/logout.php" class="logout-button">Cerrar Sesión</a>
     </header>
 
-    <!-- Contenido principal -->
+    <!-- Contenido principal: subir imagen, administrar fotos y ver perfil -->
     <main>
-        <!-- Subir Imagen -->
+        <!-- Formulario para subir una nueva imagen -->
         <div class="container" id="subir-imagen">
             <h2>Subir Imagen</h2>
-            <form id="form-subir-imagen" action="../Backend/subir_imagen.php" method="POST" enctype="multipart/form-data">
+            <form id="form-subir-imagen" action="../Backend/subir_imagen.php" method="POST"
+                enctype="multipart/form-data">
                 <input type="text" name="titulo" placeholder="Título de la imagen" required>
                 <select name="id_rally" id="rally-select" required>
                     <option value="">Selecciona un rally</option>
@@ -29,18 +34,18 @@
             </form>
         </div>
 
-        <!-- Administrar Fotos -->
+        <!-- Enlace para administrar las fotos subidas -->
         <div class="container">
             <h2><a href="administrar_fotos.html">Administrar Fotos</a></h2>
         </div>
 
-        <!-- Ver Perfil -->
+        <!-- Botón para ver el perfil del participante -->
         <div class="container" id="ver-perfil">
             <h2>Ver Perfil</h2>
         </div>
     </main>
 
-    <!-- Modal para ver perfil -->
+    <!-- Modal para mostrar los datos del perfil -->
     <div id="modal-ver-perfil" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -51,6 +56,8 @@
         </div>
     </div>
 
+    <!-- Script JS para la lógica del participante -->
     <script src="../scripts/participante.js"></script>
 </body>
+
 </html>

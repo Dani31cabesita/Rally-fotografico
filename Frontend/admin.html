@@ -1,13 +1,17 @@
+<!--Panel principal de administración para gestionar rallys, usuarios, fotos y ver estadísticas -->
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración</title>
     <link rel="stylesheet" href="estilo/estiloPrincipal.css"> <!-- Archivo CSS externo -->
 </head>
+
 <body>
-    <!-- Cabecera -->
+    <!-- Cabecera superior con título y botón de cerrar sesión -->
     <header>
         <h1>Zona Privada</h1>
         <a href="../Backend/logout.php" class="logout-button">Cerrar Sesión</a>
@@ -15,28 +19,28 @@
 
     <!-- Contenido principal -->
     <main>
-        <!-- Tarjeta: Gestionar Rallys -->
+        <!-- Gestionar Rallys -->
         <div class="container">
             <h2>Gestionar Rallys</h2>
             <p>Visualiza todos los rallys existentes, crea nuevos o elimina los que ya no sean necesarios.</p>
-           <a href="rallys.html"> <button>Ver Rallys</button></a>
+            <a href="rallys.html"><button>Ver Rallys</button></a>
         </div>
 
-        <!-- Tarjeta: Gestionar Usuarios -->
+        <!-- Gestionar Usuarios -->
         <div class="container">
             <h2>Gestionar Usuarios</h2>
             <p>Da de alta nuevos usuarios o elimina los existentes.</p>
             <a href="gestion_usuarios.html"><button>Gestionar Usuarios</button></a>
         </div>
 
-        <!-- Tarjeta: Validar Fotografías -->
+        <!-- Validar Fotografías -->
         <div class="container">
             <h2>Validar Fotografías</h2>
             <p>Revisa las fotografías subidas por los participantes y decide si se admiten o se rechazan.</p>
             <a href="administrar_fotos.html"><button>Validar Fotografías</button></a>
         </div>
 
-        <!-- Tarjeta: Estadísticas -->
+        <!-- Estadísticas -->
         <div class="container">
             <h2>Estadísticas</h2>
             <p>Consulta estadísticas y resultados de los rallys.</p>
@@ -44,4 +48,5 @@
         </div>
     </main>
 </body>
+
 </html>

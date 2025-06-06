@@ -9,6 +9,5 @@ session_unset();
 session_destroy();
 
 // Redirigir al usuario a la página principal
-header("Location: ../Frontend/principal.html");
+header("Location: ../Frontend/index.html");
 exit;
-?>

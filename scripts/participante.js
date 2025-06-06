@@ -1,9 +1,12 @@
+//Lógica del panel de participante (ver perfil, cargar rallys activos y gestionar modal de perfil)
+
 document.addEventListener('DOMContentLoaded', function () {
+    // Elementos principales
     const verPerfilButton = document.getElementById('ver-perfil');
     const modalVerPerfil = document.getElementById('modal-ver-perfil');
     const closeButton = modalVerPerfil.querySelector('.close-button');
 
-    // Abrir el modal al hacer clic en "Ver Perfil"
+    // Al hacer clic en "Ver Perfil", solicita los datos al backend y muestra el modal
     verPerfilButton.addEventListener('click', function () {
         fetch('../Backend/perfil.php')
             .then(response => response.json())
@@ -12,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert(data.error);
                     return;
                 }
+                // Rellena los campos del modal con los datos del perfil
                 document.getElementById('perfil-nombre').textContent = data.nombre;
                 document.getElementById('perfil-correo').textContent = data.email;
                 document.getElementById('perfil-num-fotos').textContent = data.num_fotos;
@@ -23,13 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 
-    // Cargar rallys activos en el select
+    // Carga los rallys activos y los añade al select del formulario de subida de imagen
     fetch('../Backend/gestion_rallys.php')
         .then(response => response.json())
         .then(data => {
             const select = document.getElementById('rally-select');
             select.innerHTML = '<option value="">Selecciona un rally</option>';
             if (Array.isArray(data) && data.length > 0) {
+                // Añade cada rally como opción
                 data.forEach(rally => {
                     const option = document.createElement('option');
                     option.value = rally.id_rally;
@@ -43,17 +48,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(() => {
+            // Si hay error al cargar los rallys, muestra mensaje y deshabilita el select
             const select = document.getElementById('rally-select');
             select.innerHTML = '<option value="">Error al cargar los rallys</option>';
             select.disabled = true;
         });
 
-    // Cerrar el modal al hacer clic en el botón de cerrar
+    // Cierra el modal al hacer clic en la X
     closeButton.addEventListener('click', function () {
         modalVerPerfil.style.display = 'none';
     });
 
-    // Cerrar el modal al hacer clic fuera del contenido
+    // Cierra el modal al hacer clic fuera del contenido del modal
     window.addEventListener('click', function (event) {
         if (event.target === modalVerPerfil) {
             modalVerPerfil.style.display = 'none';
